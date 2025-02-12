@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-import subprocess, os, signal, datetime, time
+import subprocess, os, signal, datetime, time, json, sys
 
+version = os.environ.get('COMWECHAT_VERSION', '3.9.12.16')
 
 class DockerWechatHook:
     def __init__(self):
@@ -47,8 +48,19 @@ class DockerWechatHook:
     def run_hook(self):
         print("等待 5 秒再 hook")
         time.sleep(5)
-        self.reg_hook = subprocess.run(['wine','/comwechat/http/WeChatHook.exe'])
+        self.reg_hook = subprocess.Popen(['wine','/comwechat/http/WeChatHook.exe'])
         # self.reg_hook = subprocess.run(['wine', 'explorer.exe'])
+    
+    def change_version(self):
+        time.sleep(5)
+        result = subprocess.run(['curl', '-X', 'POST', 'http://127.0.0.1:18888/api/?type=35', '-H', 'Content-Type: application/json', '-d', json.dumps({"path": "/comwechat/http/WeChatHook.exe", "version": version})], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode != 0:
+            print(f"Curl command failed with error: {result.stderr.decode()}")
+            print("版本修改失败")
+            self.exit_container()
+            sys.exit(1)
+        else:
+            print("版本已经修改")
 
     def exit_container(self):
         print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+ ' 正在退出容器...')
@@ -74,6 +86,9 @@ class DockerWechatHook:
         self.run_vnc()
         self.run_wechat()
         self.run_hook()
+        self.change_version()
+        while True:
+            time.sleep(1)
         print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+ ' 感谢使用.')
 
 
