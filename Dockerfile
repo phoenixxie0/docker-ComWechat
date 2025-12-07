@@ -20,7 +20,8 @@ RUN rm /etc/apt/sources.list.d/wine-obs.list && \
     locales mesa-utils \
     procps \
     pev \
-    pulseaudio-utils -y
+    pulseaudio-utils -y && \
+    localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8 
 
 ADD wine/simsun.ttc /home/user/.wine/drive_c/windows/Fonts/simsun.ttc
 ADD wine/微信.lnk /home/user/.wine/drive_c/users/Public/Desktop/微信.lnk
