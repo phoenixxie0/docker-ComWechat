@@ -1,7 +1,7 @@
 # docker-ComWechat
-[![docker 镜像](https://dockeri.co/image/tomsnow1999/docker-com_wechat_robot)](https://hub.docker.com/r/tomsnow1999/docker-com_wechat_robot/tags)
+[![docker 镜像](https://dockeri.co/image/phoenixxie/docker-comwechat/tags)](https://hub.docker.com/r/phoenixxie/docker-comwechat/tags)
 
-[![镜像大小](https://badgen.net/docker/size/tomsnow1999/docker-com_wechat_robot)](https://hub.docker.com/r/tomsnow1999/docker-com_wechat_robot/tags)
+[![镜像大小](https://badgen.net/docker/size/phoenixxie/docker-comwechat)](https://hub.docker.com/r/phoenixxie/docker-comwechat/tags)
 
 A docker image for [ComWeChatRobot](https://github.com/ljc545w/ComWeChatRobot)
 
