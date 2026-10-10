@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import subprocess, os, signal, datetime, time, json, sys
 
-version = os.environ.get('COMWECHAT_VERSION', '3.9.12.16')
+version = os.environ.get('COMWECHAT_VERSION', '3.9.12.56')
 
 class DockerWechatHook:
     def __init__(self):
